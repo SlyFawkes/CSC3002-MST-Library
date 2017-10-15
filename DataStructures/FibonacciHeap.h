@@ -20,6 +20,9 @@ public:
     void consolidate();
     Node* extractMin();
     void link(Node* nodeA, Node* nodeB);
+    void decreaseKey(Node* node, int key);
+    void cut(Node* child, Node* parent);
+    void cascadeCut(Node* node);
 };
 
 

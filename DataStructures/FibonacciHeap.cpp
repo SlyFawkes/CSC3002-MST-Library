@@ -138,5 +138,52 @@ void FibonacciHeap::link(Node* nodeA, Node *nodeB) {
     nodeA->marked = false;
 }
 
+void FibonacciHeap::decreaseKey(Node* node, int key) {
+    if (key > node->key) {
+        return;
+    }
+
+    node->key = key;
+    Node* parent = node->parent;
+
+    if (parent != nullptr && node->key < parent->key) {
+        cut(node, parent);
+        cascadeCut(parent);
+    }
+    if (node->key < minimumNode->key) {
+        minimumNode = node;
+    }
+}
+
+void FibonacciHeap::cut(Node* child, Node* parent) {
+    if (child != child->right) {
+        parent->child = child->right;
+        child->left->right = child->right;
+        child->right->left = child->left;
+    } else {
+        parent->child = nullptr;
+    }
+    child->parent = nullptr;
+    child->marked = false;
+    child->left = minimumNode;
+    child->right = minimumNode->right;
+    minimumNode->right->left = child;
+    minimumNode->right = child;
+}
+
+void FibonacciHeap::cascadeCut(Node* node) {
+    Node* parent = node->parent;
+    if (parent != nullptr) {
+        if (!node->marked) {
+            node->marked = true;
+        } else {
+            cut(node, parent);
+            cascadeCut(parent);
+        }
+    }
+}
+
+
+
 
 
