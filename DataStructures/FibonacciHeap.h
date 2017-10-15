@@ -15,6 +15,8 @@ public:
 
     FibonacciHeap();
     void insert(Node* node);
+    Node getMin();
+    void fibHeapUnion(FibonacciHeap heap);
 };
 
 
