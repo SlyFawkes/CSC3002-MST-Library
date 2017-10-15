@@ -17,14 +17,13 @@ void FibonacciHeap::insert(Node* node) {
     node->child = nullptr;
     node->marked = false;
     if (minimumNode == nullptr) {
-        //TODO possibly remove?
-        node->left = nullptr;
-        node->right = nullptr;
         minimumNode = node;
     } else {
+        node->left = minimumNode;
+        node->right = minimumNode->right;
+        minimumNode->right->left = node;
+        minimumNode->right = node;
         if (node->key < minimumNode->key) {
-            node->left = minimumNode;
-            node->right = minimumNode->right;
             minimumNode = node;
         }
     }
@@ -56,19 +55,21 @@ void FibonacciHeap::fibHeapUnion(FibonacciHeap heap) {
 Node* FibonacciHeap::extractMin() {
     Node* extractedNode = minimumNode;
 
-    if (extractedNode != nullptr && extractedNode->child != nullptr) {
-        Node *currentChild = extractedNode->child;
-        for (int i = 0; i < extractedNode->degree; i++) {
-            currentChild->parent = nullptr;
-            currentChild = currentChild->right;
-        }
-        Node *currentRootList = extractedNode->left;
-        Node *childList = currentChild->left;
+    if (extractedNode != nullptr) {
+        if (extractedNode->child != nullptr) {
+            Node *currentChild = extractedNode->child;
+            for (int i = 0; i < extractedNode->degree; i++) {
+                currentChild->parent = nullptr;
+                currentChild = currentChild->right;
+            }
+            Node *currentRootList = extractedNode->left;
+            Node *childList = currentChild->left;
 
-        extractedNode->left = childList;
-        currentRootList->right = currentChild;
-        currentChild->left = currentRootList;
-        childList->right = extractedNode;
+            extractedNode->left = childList;
+            currentRootList->right = currentChild;
+            currentChild->left = currentRootList;
+            childList->right = extractedNode;
+        }
 
         //Remove extracted node from root list
         extractedNode->left->right = extractedNode->right;
@@ -87,10 +88,23 @@ Node* FibonacciHeap::extractMin() {
 
 void FibonacciHeap::consolidate() {
     auto maxDegree = static_cast<int>(log(nodeAmount));
-    Node* tempArray[maxDegree] = {};
+    Node* tempArray[maxDegree + 1] = {};
 
     Node* currentRootNode = minimumNode;
-    do {
+    int noRootNodes = 1;
+    while (currentRootNode != minimumNode->left) {
+        noRootNodes++;
+        currentRootNode = currentRootNode->right;
+    }
+
+    Node* rootNodeList[noRootNodes];
+    currentRootNode = minimumNode;
+    for (int i = 0; i < noRootNodes; i++) {
+        rootNodeList[0] = currentRootNode;
+        currentRootNode = currentRootNode->right;
+    }
+    for (int i = 0; i < noRootNodes; i++) {
+        currentRootNode = rootNodeList[i];
         int degree = currentRootNode->degree;
 
         while (tempArray[degree] != nullptr) {
@@ -106,12 +120,11 @@ void FibonacciHeap::consolidate() {
         }
         tempArray[degree] = currentRootNode;
 
-        currentRootNode = currentRootNode->right;
-    } while (currentRootNode != minimumNode);
+    }
 
     minimumNode = nullptr;
 
-    for (int i = 0; i < maxDegree; i++) {
+    for (int i = 0; i <= maxDegree; i++) {
         if (tempArray[i] != nullptr) {
             if (minimumNode == nullptr) {
                 minimumNode = tempArray[i];
@@ -122,20 +135,23 @@ void FibonacciHeap::consolidate() {
     }
 }
 
-void FibonacciHeap::link(Node* nodeA, Node *nodeB) {
-    nodeA->parent = nodeB;
-    nodeB->child = nodeA;
-    nodeB->degree++;
+void FibonacciHeap::link(Node* rootNode, Node* newParent) {
+    rootNode->parent = newParent;
 
-    Node* tempNodeALeft = nodeA->left;
-    Node* tempNodeBRight = nodeB->right;
-
-    nodeA->left = nodeB->left;
-    nodeA->right = nodeB->right;
-
-    nodeB->left = tempNodeALeft;
-    nodeB->right = tempNodeBRight;
-    nodeA->marked = false;
+    rootNode->left->right = rootNode->right;
+    rootNode->right->left = rootNode->left;
+    if (newParent->child == nullptr) {
+        newParent->child = rootNode;
+        rootNode->left = rootNode;
+        rootNode->right = rootNode;
+    } else {
+        rootNode->left = newParent->child;
+        rootNode->right = newParent->child->right;
+        newParent->child->right->left = rootNode;
+        newParent->child->right = rootNode;
+    }
+    newParent->degree++;
+    rootNode->marked = false;
 }
 
 void FibonacciHeap::decreaseKey(Node* node, int key) {
@@ -160,6 +176,7 @@ void FibonacciHeap::cut(Node* child, Node* parent) {
         parent->child = child->right;
         child->left->right = child->right;
         child->right->left = child->left;
+        parent->degree--;
     } else {
         parent->child = nullptr;
     }
