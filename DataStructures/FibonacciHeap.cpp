@@ -1,5 +1,6 @@
 
 #include "FibonacciHeap.h"
+#include <cmath>
 
 FibonacciHeap :: FibonacciHeap() {
     nodeAmount = 0;
@@ -83,4 +84,59 @@ Node* FibonacciHeap::extractMin() {
     }
     return extractedNode;
 }
+
+void FibonacciHeap::consolidate() {
+    auto maxDegree = static_cast<int>(log(nodeAmount));
+    Node* tempArray[maxDegree] = {};
+
+    Node* currentRootNode = minimumNode;
+    do {
+        int degree = currentRootNode->degree;
+
+        while (tempArray[degree] != nullptr) {
+            Node* nodeWithIdenticalDegree = tempArray[degree];
+            if (currentRootNode->key > nodeWithIdenticalDegree->key) {
+                Node* temp = currentRootNode;
+                currentRootNode = nodeWithIdenticalDegree;
+                nodeWithIdenticalDegree = temp;
+            }
+            link(nodeWithIdenticalDegree, currentRootNode);
+            tempArray[degree] = nullptr;
+            degree++;
+        }
+        tempArray[degree] = currentRootNode;
+
+        currentRootNode = currentRootNode->right;
+    } while (currentRootNode != minimumNode);
+
+    minimumNode = nullptr;
+
+    for (int i = 0; i < maxDegree; i++) {
+        if (tempArray[i] != nullptr) {
+            if (minimumNode == nullptr) {
+                minimumNode = tempArray[i];
+            } else if (tempArray[i]->key < minimumNode->key){
+                minimumNode = tempArray[i];
+            }
+        }
+    }
+}
+
+void FibonacciHeap::link(Node* nodeA, Node *nodeB) {
+    nodeA->parent = nodeB;
+    nodeB->child = nodeA;
+    nodeB->degree++;
+
+    Node* tempNodeALeft = nodeA->left;
+    Node* tempNodeBRight = nodeB->right;
+
+    nodeA->left = nodeB->left;
+    nodeA->right = nodeB->right;
+
+    nodeB->left = tempNodeALeft;
+    nodeB->right = tempNodeBRight;
+    nodeA->marked = false;
+}
+
+
 

@@ -19,6 +19,7 @@ public:
     void fibHeapUnion(FibonacciHeap heap);
     void consolidate();
     Node* extractMin();
+    void link(Node* nodeA, Node* nodeB);
 };
 
 
