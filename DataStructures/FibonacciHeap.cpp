@@ -52,3 +52,35 @@ void FibonacciHeap::fibHeapUnion(FibonacciHeap heap) {
     nodeAmount = nodeAmount + heap.nodeAmount;
 }
 
+Node* FibonacciHeap::extractMin() {
+    Node* extractedNode = minimumNode;
+
+    if (extractedNode != nullptr && extractedNode->child != nullptr) {
+        Node *currentChild = extractedNode->child;
+        for (int i = 0; i < extractedNode->degree; i++) {
+            currentChild->parent = nullptr;
+            currentChild = currentChild->right;
+        }
+        Node *currentRootList = extractedNode->left;
+        Node *childList = currentChild->left;
+
+        extractedNode->left = childList;
+        currentRootList->right = currentChild;
+        currentChild->left = currentRootList;
+        childList->right = extractedNode;
+
+        //Remove extracted node from root list
+        extractedNode->left->right = extractedNode->right;
+        extractedNode->right->left = extractedNode->left;
+
+        if (extractedNode == extractedNode->right) {
+            minimumNode = nullptr;
+        } else {
+            minimumNode = extractedNode->right;
+            consolidate();
+        }
+        nodeAmount--;
+    }
+    return extractedNode;
+}
+
