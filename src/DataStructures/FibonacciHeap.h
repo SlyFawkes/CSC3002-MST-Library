@@ -1,6 +1,3 @@
-//
-// Created by dan on 13/10/17.
-//
 
 #ifndef SOLVINGLIBRARY_FIBONACCIHEAP_H
 #define SOLVINGLIBRARY_FIBONACCIHEAP_H

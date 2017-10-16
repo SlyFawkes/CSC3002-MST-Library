@@ -16,7 +16,7 @@ public:
     bool marked;
     int key;
 
-    Node(int key);
+    explicit Node(int key);
 
 };
 
