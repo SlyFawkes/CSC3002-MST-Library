@@ -100,7 +100,7 @@ void FibonacciHeap::consolidate() {
     Node* rootNodeList[noRootNodes];
     currentRootNode = minimumNode;
     for (int i = 0; i < noRootNodes; i++) {
-        rootNodeList[0] = currentRootNode;
+        rootNodeList[i] = currentRootNode;
         currentRootNode = currentRootNode->right;
     }
     for (int i = 0; i < noRootNodes; i++) {
