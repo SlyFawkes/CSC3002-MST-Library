@@ -12,12 +12,14 @@ public:
 
     FibonacciHeap();
     void insert(Node* node);
-    Node getMin();
-    void fibHeapUnion(FibonacciHeap heap);
-    void consolidate();
+    Node* getMin();
     Node* extractMin();
-    void link(Node* nodeA, Node* nodeB);
     void decreaseKey(Node* node, int key);
+    void fibHeapUnion(FibonacciHeap heap);
+
+private:
+    void link(Node* nodeA, Node* nodeB);
+    void consolidate();
     void cut(Node* child, Node* parent);
     void cascadeCut(Node* node);
 };

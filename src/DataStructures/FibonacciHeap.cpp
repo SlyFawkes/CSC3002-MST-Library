@@ -7,8 +7,8 @@ FibonacciHeap :: FibonacciHeap() {
     minimumNode = nullptr;
 }
 
-Node FibonacciHeap::getMin() {
-    return *minimumNode;
+Node* FibonacciHeap::getMin() {
+    return minimumNode;
 }
 
 void FibonacciHeap::insert(Node* node) {
