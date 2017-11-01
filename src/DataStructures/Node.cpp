@@ -4,7 +4,8 @@
 
 #include "Node.h"
 
-Node::Node(int key) {
+Node::Node(int id, int key) {
+    this->id = id;
     this->key = key;
     this->degree = 0;
     this->parent = nullptr;

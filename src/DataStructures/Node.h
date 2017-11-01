@@ -8,6 +8,7 @@
 
 class Node {
 public:
+    int id;
     int degree;
     Node* parent;
     Node* child;
@@ -16,7 +17,7 @@ public:
     bool marked;
     int key;
 
-    explicit Node(int key);
+    explicit Node(int id, int key);
 
 };
 
