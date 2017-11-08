@@ -16,6 +16,7 @@ public:
     Node* right;
     bool marked;
     int key;
+    bool inHeap;
 
     explicit Node(int id, int key);
 

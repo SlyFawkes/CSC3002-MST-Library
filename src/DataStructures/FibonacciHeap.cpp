@@ -82,12 +82,14 @@ Node* FibonacciHeap::extractMin() {
             consolidate();
         }
         nodeAmount--;
+        extractedNode->inHeap = false;
     }
     return extractedNode;
 }
 
 void FibonacciHeap::consolidate() {
-    auto maxDegree = static_cast<int>(log(nodeAmount));
+//    auto maxDegree = static_cast<int>(log10(nodeAmount)/log10(1.618));
+    int maxDegree = nodeAmount; //TODO fix this
     Node* tempArray[maxDegree + 1] = {};
 
     Node* currentRootNode = minimumNode;

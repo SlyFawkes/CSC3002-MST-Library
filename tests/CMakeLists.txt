@@ -28,7 +28,7 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
         ${CMAKE_BINARY_DIR}/googletest-build)
 
 
-add_executable(runUnitTests FibHeapTests.cpp)
+add_executable(runUnitTests FibHeapTests.cpp PrimSolverTests.cpp)
 
 target_link_libraries(runUnitTests gtest gtest_main)
 target_link_libraries(runUnitTests SolvingLibrary)

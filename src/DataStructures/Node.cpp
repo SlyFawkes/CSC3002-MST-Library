@@ -13,4 +13,5 @@ Node::Node(int id, int key) {
     this->marked = false;
     this->left = this;
     this->right = this;
+    this->inHeap = true;
 }

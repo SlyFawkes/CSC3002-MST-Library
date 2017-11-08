@@ -13,7 +13,7 @@ struct CSRGraph {
     int* weightsList;
 };
 
-class PrimSolver : AbstractSolver {
+class PrimSolver {
 public:
     CSRGraph* graph;
     explicit PrimSolver(CSRGraph* graph);
