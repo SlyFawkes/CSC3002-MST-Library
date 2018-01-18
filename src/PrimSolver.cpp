@@ -4,23 +4,13 @@
 #include "DataStructures/FibonacciHeap.h"
 
 
-struct Edge {
-    int nodeA;
-    int nodeB;
-    int weight;
-    Edge(int nodeA, int nodeB, int weight) {
-        this->nodeA = nodeA;
-        this->nodeB = nodeB;
-        this->weight = weight;
-    }
-};
 
 //TODO remove graph from constructor only pass in when needed, one prim solver can solve many graphs
 PrimSolver::PrimSolver(CSRGraph* graph) {
     this->graph = graph;
 }
 
-CSRGraph PrimSolver::solve() {
+Edge* PrimSolver::solve(Edge* mstEdges) {
 
 //    int nodeMinEdgeWeight[graph->numberOfNodes];
     int nodeClosestAvailableNeighbour[graph->numberOfNodes];
@@ -36,7 +26,7 @@ CSRGraph PrimSolver::solve() {
     }
 
     bool mstNodes[graph->numberOfNodes] = {};
-    Edge* mstEdges[graph->numberOfNodes - 1] = {};
+//    Edge* mstEdges[graph->numberOfNodes - 1] = {};
 
 
     Node* firstNode = heap.extractMin();
@@ -54,7 +44,7 @@ CSRGraph PrimSolver::solve() {
         int nodeId = nextNode->id;
 
         if (!mstNodes[nodeId]) {
-            mstEdges[i] = new Edge(nodeId, nodeClosestAvailableNeighbour[nodeId], nextNode->key);
+            mstEdges[i] = Edge(nodeId, nodeClosestAvailableNeighbour[nodeId], nextNode->key);
 
             for (int j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
                 if (graph->weightsList[j] < heapNodes[graph->edgeList[j]]->key && heapNodes[graph->edgeList[j]]->inHeap) {
@@ -68,5 +58,5 @@ CSRGraph PrimSolver::solve() {
     int x = 0;
 
 
-    return *new CSRGraph();
+    return mstEdges;
 }

@@ -29,5 +29,21 @@ TEST_F(PrimSolverTest, getMST) {
         csrGraph.weightsList[i] = weightList[i];
     }
     PrimSolver primSolver = PrimSolver(&csrGraph);
-    primSolver.solve();
+    Edge mstEdges[csrGraph.numberOfNodes - 1] = {};
+    primSolver.solve(mstEdges);
+
+    Edge knownMstEdges[csrGraph.numberOfNodes - 1] = {};
+    knownMstEdges[0] = Edge(0, 1, 2);
+    knownMstEdges[1] = Edge(1, 8, 2);
+    knownMstEdges[2] = Edge(8, 9, 3);
+    knownMstEdges[3] = Edge(1, 7, 8);
+    knownMstEdges[4] = Edge(7, 2, 7);
+    knownMstEdges[5] = Edge(2, 3, 4);
+    knownMstEdges[6] = Edge(3, 4, 1);
+    knownMstEdges[7] = Edge(4, 5, 3);
+    knownMstEdges[8] = Edge(7, 6, 8);
+
+    for (int x = 0; x < csrGraph.numberOfNodes - 1; x++) {
+        EXPECT_EQ(mstEdges[x], knownMstEdges[x]);
+    }
 }
