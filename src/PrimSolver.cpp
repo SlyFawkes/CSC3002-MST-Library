@@ -55,7 +55,6 @@ Edge* PrimSolver::solve(Edge* mstEdges) {
         }
         mstNodes[nextNode->id] = true;
     }
-    int x = 0;
 
 
     return mstEdges;

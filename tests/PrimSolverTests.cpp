@@ -45,5 +45,9 @@ TEST_F(PrimSolverTest, getMST) {
 
     for (int x = 0; x < csrGraph.numberOfNodes - 1; x++) {
         EXPECT_EQ(mstEdges[x], knownMstEdges[x]);
+        printf("\nEdge %d, NodeA %d, Node B %d, Weight %d", x, mstEdges[x].nodeA, mstEdges[x].nodeB, mstEdges[x].weight);
     }
+    printf("\n");
+
+
 }
