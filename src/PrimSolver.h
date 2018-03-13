@@ -1,6 +1,6 @@
 
 #ifndef SOLVINGLIBRARY_PRIMSOLVER_H
-#define SOLVINGLIBRARY_PRIMSOLVER_H
+#define SOLVINGLIBRARY_PRIMSOLVER_H 1
 
 #include <cstddef>
 #include "AbstractSolver.h"
