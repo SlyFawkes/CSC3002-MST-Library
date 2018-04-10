@@ -20,7 +20,7 @@ Edge* PrimSolver::solve(Edge* mstEdges) {
     Node* heapNodes[graph->numberOfNodes];
     for (int i=0; i < graph->numberOfNodes; i++) {
 //        nodeMinEdgeWeight[i] = INT_MAX;
-        heapNodes[i] = new Node(i, INT_MAX);
+        heapNodes[i] = new Node(i, INT_MAX, 0, 0);
         nodeClosestAvailableNeighbour[i] = -1;
         heap.insert(heapNodes[i]);
     }
