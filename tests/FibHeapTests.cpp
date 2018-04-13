@@ -14,7 +14,7 @@ protected:
 
 TEST_F(FibonacciHeapBasicTest, InsertSingleNode) {
     EXPECT_EQ(0, fibonacciHeap->nodeAmount);
-    Node* node = new Node(0, 1, 0, 0);
+    Node* node = new Node(0, 1);
     fibonacciHeap->insert(node);
     EXPECT_EQ(1, fibonacciHeap->nodeAmount);
     EXPECT_EQ(node, fibonacciHeap->getMin());
@@ -22,7 +22,7 @@ TEST_F(FibonacciHeapBasicTest, InsertSingleNode) {
 }
 
 TEST_F(FibonacciHeapBasicTest, GetMinimumSingleNode) {
-    Node* node = new Node(0, 1, 0, 0);
+    Node* node = new Node(0, 1);
     fibonacciHeap->insert(node);
     Node* retrievedNode = fibonacciHeap->getMin();
     EXPECT_EQ(node, retrievedNode);
@@ -31,8 +31,8 @@ TEST_F(FibonacciHeapBasicTest, GetMinimumSingleNode) {
 }
 
 TEST_F(FibonacciHeapBasicTest, InsertMultipleNodes) {
-    Node* highNode = new Node(0, 100, 0, 0);
-    Node* lowNode = new Node(1, 1, 0, 0);
+    Node* highNode = new Node(0, 100);
+    Node* lowNode = new Node(1, 1);
     fibonacciHeap->insert(highNode);
     EXPECT_EQ(1, fibonacciHeap->nodeAmount);
     EXPECT_EQ(highNode, fibonacciHeap->getMin());
@@ -43,7 +43,7 @@ TEST_F(FibonacciHeapBasicTest, InsertMultipleNodes) {
 }
 
 TEST_F(FibonacciHeapBasicTest, ExtractsMinimumSingleNode) {
-    Node* node = new Node(0, 2, 0, 0);
+    Node* node = new Node(0, 2);
     fibonacciHeap->insert(node);
     Node* extractedNode = fibonacciHeap->extractMin();
     EXPECT_EQ(node, extractedNode);
@@ -51,22 +51,22 @@ TEST_F(FibonacciHeapBasicTest, ExtractsMinimumSingleNode) {
 }
 
 TEST_F(FibonacciHeapBasicTest, DecreaseKeySingleNode) {
-    Node* node = new Node(0, 2, 0, 0);
+    Node* node = new Node(0, 2);
     fibonacciHeap->insert(node);
     fibonacciHeap->decreaseKey(node, 1);
     EXPECT_EQ(1, fibonacciHeap->getMin()->key);
 }
 
 TEST_F(FibonacciHeapBasicTest, DecreaseKeyLargerValueNode) {
-    Node* node = new Node(0, 2, 0, 0);
+    Node* node = new Node(0, 2);
     fibonacciHeap->insert(node);
     fibonacciHeap->decreaseKey(node, 3);
     EXPECT_EQ(2, fibonacciHeap->getMin()->key);
 }
 
 TEST_F(FibonacciHeapBasicTest, DecreseKeyNonMinimumNode) {
-    Node* lowerNode = new Node(0, 5, 0, 0);
-    Node* higherNode = new Node(1, 10, 0, 0);
+    Node* lowerNode = new Node(0, 5);
+    Node* higherNode = new Node(1, 10);
     fibonacciHeap->insert(lowerNode);
     fibonacciHeap->insert(higherNode);
     EXPECT_EQ(lowerNode, fibonacciHeap->getMin());
@@ -76,10 +76,10 @@ TEST_F(FibonacciHeapBasicTest, DecreseKeyNonMinimumNode) {
 
 TEST_F(FibonacciHeapBasicTest, FibHeapUnion) {
     FibonacciHeap* fibonacciHeap2 = new FibonacciHeap();
-    Node* lowerNode1 = new Node(0, 5, 0, 0);
-    Node* higherNode1 = new Node(1, 15, 0, 0);
-    Node* lowerNode2 = new Node(2, 10, 0, 0);
-    Node* higherNode2 = new Node(3, 20, 0, 0);
+    Node* lowerNode1 = new Node(0, 5);
+    Node* higherNode1 = new Node(1, 15);
+    Node* lowerNode2 = new Node(2, 10);
+    Node* higherNode2 = new Node(3, 20);
 
     fibonacciHeap->insert(lowerNode1);
     fibonacciHeap->insert(higherNode1);
@@ -95,10 +95,10 @@ TEST_F(FibonacciHeapBasicTest, FibHeapUnion) {
 }
 
 TEST_F(FibonacciHeapBasicTest, MultiExtract) {
-    Node* lowerNode1 = new Node(0, 5, 0, 0);
-    Node* higherNode1 = new Node(1, 15, 0, 0);
-    Node* lowerNode2 = new Node(2, 10, 0, 0);
-    Node* higherNode2 = new Node(3, 20, 0, 0);
+    Node* lowerNode1 = new Node(0, 5);
+    Node* higherNode1 = new Node(1, 15);
+    Node* lowerNode2 = new Node(2, 10);
+    Node* higherNode2 = new Node(3, 20);
 
     fibonacciHeap->insert(lowerNode1);
     fibonacciHeap->insert(higherNode1);
@@ -113,10 +113,10 @@ TEST_F(FibonacciHeapBasicTest, MultiExtract) {
 }
 
 TEST_F(FibonacciHeapBasicTest, InsertExtractInsert) {
-    Node* lowerNode1 = new Node(0, 5, 0, 0);
-    Node* higherNode1 = new Node(1, 15, 0, 0);
-    Node* lowerNode2 = new Node(2, 10, 0, 0);
-    Node* higherNode2 = new Node(3, 20, 0, 0);
+    Node* lowerNode1 = new Node(0, 5);
+    Node* higherNode1 = new Node(1, 15);
+    Node* lowerNode2 = new Node(2, 10);
+    Node* higherNode2 = new Node(3, 20);
 
     fibonacciHeap->insert(lowerNode1);
     fibonacciHeap->insert(higherNode1);
@@ -127,8 +127,8 @@ TEST_F(FibonacciHeapBasicTest, InsertExtractInsert) {
     EXPECT_EQ(lowerNode1, fibonacciHeap->extractMin());
     EXPECT_EQ(lowerNode2, fibonacciHeap->extractMin());
 
-    Node* lowerNode3 = new Node(4, 1, 0, 0);
-    Node* higherNode3 = new Node(5, 25, 0, 0);
+    Node* lowerNode3 = new Node(4, 1);
+    Node* higherNode3 = new Node(5, 25);
     fibonacciHeap->insert(lowerNode3);
     fibonacciHeap->insert(higherNode3);
 

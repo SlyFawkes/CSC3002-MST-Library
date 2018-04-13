@@ -20,6 +20,7 @@ public:
     int vertexA;
     int vertexB;
 
+    explicit Node(int id, int key);
     explicit Node(int id, int key, int vertexA, int vertexB);
 
 };
