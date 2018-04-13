@@ -70,7 +70,7 @@ Node* FibonacciHeap::extractMin() {
             childList->right = extractedNode;
         }
 
-        //Remove extracted node from root list
+        // Remove extracted node from root list
         extractedNode->left->right = extractedNode->right;
         extractedNode->right->left = extractedNode->left;
 
@@ -128,7 +128,7 @@ void FibonacciHeap::consolidate() {
         if (tempArray[i] != nullptr) {
             if (minimumNode == nullptr) {
                 minimumNode = tempArray[i];
-            } else if (tempArray[i]->key < minimumNode->key){
+            } else if (tempArray[i]->key < minimumNode->key) {
                 minimumNode = tempArray[i];
             }
         }
