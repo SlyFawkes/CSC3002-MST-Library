@@ -3,7 +3,6 @@
 #define SOLVINGLIBRARY_PRIMSOLVER_H 1
 
 #include <cstddef>
-#include "AbstractSolver.h"
 
 struct CSRGraph {
     size_t numberOfNodes;
