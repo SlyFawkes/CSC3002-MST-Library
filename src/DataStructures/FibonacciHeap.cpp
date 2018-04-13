@@ -1,6 +1,5 @@
 
 #include "FibonacciHeap.h"
-#include <cmath>
 
 FibonacciHeap :: FibonacciHeap() {
     nodeAmount = 0;
@@ -88,8 +87,7 @@ Node* FibonacciHeap::extractMin() {
 }
 
 void FibonacciHeap::consolidate() {
-//    auto maxDegree = static_cast<int>(log10(nodeAmount)/log10(1.618));
-    int maxDegree = nodeAmount; //TODO fix this
+    int maxDegree = nodeAmount;
     Node* tempArray[maxDegree + 1] = {};
 
     Node* currentRootNode = minimumNode;

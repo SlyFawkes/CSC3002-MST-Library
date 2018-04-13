@@ -1,6 +1,3 @@
-//
-// Created by dan on 13/10/17.
-//
 
 #ifndef SOLVINGLIBRARY_NODE_H
 #define SOLVINGLIBRARY_NODE_H 1

@@ -12,21 +12,18 @@ PrimSolver::PrimSolver(CSRGraph* graph) {
 
 Edge* PrimSolver::solve(Edge* mstEdges) {
 
-//    int nodeMinEdgeWeight[graph->numberOfNodes];
     int nodeClosestAvailableNeighbour[graph->numberOfNodes];
 
     FibonacciHeap heap = FibonacciHeap();
 
     Node* heapNodes[graph->numberOfNodes];
     for (int i=0; i < graph->numberOfNodes; i++) {
-//        nodeMinEdgeWeight[i] = INT_MAX;
         heapNodes[i] = new Node(i, INT_MAX);
         nodeClosestAvailableNeighbour[i] = -1;
         heap.insert(heapNodes[i]);
     }
 
     bool mstNodes[graph->numberOfNodes] = {};
-//    Edge* mstEdges[graph->numberOfNodes - 1] = {};
 
 
     Node* firstNode = heap.extractMin();
