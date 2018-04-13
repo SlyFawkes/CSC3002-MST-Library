@@ -25,7 +25,6 @@ Edge *KruskalSolver::solve(Edge *mstEdges) {
     std::vector< std::vector<int> > graphNodes;
     for(int i = 0; i < graph->numberOfNodes; i++) {
         std::vector<int> tree;
-        tree.reserve(sizeof(int)*graph->numberOfNodes);
         tree.push_back(i);
         graphNodes.push_back(tree);
     }
@@ -35,17 +34,13 @@ Edge *KruskalSolver::solve(Edge *mstEdges) {
         Node smallestEdge = *heap.extractMin();
         int position;
         std::vector<int>* tree = getTreeContaining(smallestEdge.vertexA, &graphNodes, &position);
-        printf("\n%d, %d, %d, %lu", smallestEdge.vertexA, smallestEdge.vertexB, smallestEdge.key, graphNodes.size());
-//        for(int i = 0; i < tree.size(); i++) {
-            if(!doesTreeContain(smallestEdge.vertexB, tree)) {
-                std::vector<int>* tree2 = getTreeContaining(smallestEdge.vertexB, &graphNodes, &position);
-                tree->insert(tree->end(), tree2->begin(), tree2->end());
-                graphNodes.erase(graphNodes.begin() + position);
-                mstEdges[count] = Edge(smallestEdge.vertexA, smallestEdge.vertexB, smallestEdge.key);
-                count++;
-            }
-//        }
-
+        if(!doesTreeContain(smallestEdge.vertexB, tree)) {
+            std::vector<int>* tree2 = getTreeContaining(smallestEdge.vertexB, &graphNodes, &position);
+            tree->insert(tree->end(), tree2->begin(), tree2->end());
+            graphNodes.erase(graphNodes.begin() + position);
+            mstEdges[count] = Edge(smallestEdge.vertexA, smallestEdge.vertexB, smallestEdge.key);
+            count++;
+        }
     }
 
 
