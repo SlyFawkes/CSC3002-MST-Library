@@ -5,7 +5,6 @@
 
 
 
-//TODO remove graph from constructor only pass in when needed, one prim solver can solve many graphs
 PrimSolver::PrimSolver(CSRGraph* graph) {
     this->graph = graph;
 }
