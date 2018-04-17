@@ -8,9 +8,9 @@
 struct CSRGraph {
     size_t numberOfNodes;
     size_t numberOfEdges;
-    int* nodeList;
-    int* edgeList;
-    int* weightsList;
+    size_t* nodeList;
+    size_t * edgeList;
+    int * weightsList;
 };
 
 #endif //SOLVINGLIBRARY_CSRGRAPH_H
