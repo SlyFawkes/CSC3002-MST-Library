@@ -58,7 +58,7 @@ Edge* KruskalSolver::solve(Edge *mstEdges) {
         // check if the other node in the edge is already contained within the same tree
         if(!doesTreeContain(smallestEdge.vertexB, tree)) {
 
-            // If it's not join the tree of the second node ot the tree of the first and remove the second tree
+            // If it's not join the tree of the second node to the tree of the first and remove the second tree
             std::vector<int>* tree2 = getTreeContaining(smallestEdge.vertexB, &graphNodes, &position);
             tree->insert(tree->end(), tree2->begin(), tree2->end());
             graphNodes.erase(graphNodes.begin() + position);

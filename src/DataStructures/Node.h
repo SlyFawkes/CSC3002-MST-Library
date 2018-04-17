@@ -2,8 +2,6 @@
 #ifndef SOLVINGLIBRARY_NODE_H
 #define SOLVINGLIBRARY_NODE_H 1
 
-#include <stddef.h>
-
 class Node {
 public:
     int id;
