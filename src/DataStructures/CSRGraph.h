@@ -8,8 +8,8 @@
 struct CSRGraph {
     size_t numberOfNodes;
     size_t numberOfEdges;
-    size_t* nodeList;
-    size_t * edgeList;
+    int* nodeList;
+    int* edgeList;
     int * weightsList;
 };
 

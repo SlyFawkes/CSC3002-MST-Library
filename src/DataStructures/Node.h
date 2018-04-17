@@ -6,7 +6,7 @@
 
 class Node {
 public:
-    size_t id;
+    int id;
     int degree;
     Node* parent;
     Node* child;
@@ -15,11 +15,11 @@ public:
     bool marked;
     int key;
     bool inHeap;
-    size_t vertexA;
-    size_t vertexB;
+    int vertexA;
+    int vertexB;
 
-    explicit Node(size_t id, int key);
-    explicit Node(size_t id, int key, size_t vertexA, size_t vertexB);
+    explicit Node(int id, int key);
+    explicit Node(int id, int key, int vertexA, int vertexB);
 
 };
 

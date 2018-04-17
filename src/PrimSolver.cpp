@@ -42,7 +42,7 @@ Edge* PrimSolver::solve(Edge* mstEdges) {
 
     // For every node connected to the first node update the key to that connected nodes new lowest value
     // also set each nearest neighbour to the one connected by the lowest weight so far
-    for (size_t j = graph->nodeList[firstNodeId]; j < graph->nodeList[firstNodeId + 1]; j++) {
+    for (int j = graph->nodeList[firstNodeId]; j < graph->nodeList[firstNodeId + 1]; j++) {
         if (graph->weightsList[j] < heapNodes[graph->edgeList[j]]->key) {
             heap.decreaseKey(heapNodes[graph->edgeList[j]], graph->weightsList[j]);
             nodeClosestAvailableNeighbour[graph->edgeList[j]] = firstNodeId;
@@ -62,7 +62,7 @@ Edge* PrimSolver::solve(Edge* mstEdges) {
 
             // For every node connected to the current node update the key to that connected nodes new lowest value
             // also set each nearest neighbour to the one connected by the lowest weight so far
-            for (size_t j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
+            for (int j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
                 if (graph->weightsList[j] < heapNodes[graph->edgeList[j]]->key && heapNodes[graph->edgeList[j]]->inHeap) {
                     heap.decreaseKey(heapNodes[graph->edgeList[j]], graph->weightsList[j]);
                     nodeClosestAvailableNeighbour[graph->edgeList[j]] = nextNode->id;
