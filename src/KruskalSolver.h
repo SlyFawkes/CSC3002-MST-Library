@@ -3,7 +3,6 @@
 #ifndef SOLVINGLIBRARY_KRUSKALSOLVER_H
 #define SOLVINGLIBRARY_KRUSKALSOLVER_H 1
 
-#include <vector>
 #include "DataStructures/Node.h"
 #include "DataStructures/CSRGraph.h"
 #include "DataStructures/Edge.h"

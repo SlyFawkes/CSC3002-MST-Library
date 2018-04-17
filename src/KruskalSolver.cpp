@@ -25,6 +25,7 @@ KruskalSolver::KruskalSolver(CSRGraph* graph) {
 Edge* KruskalSolver::solve(Edge *mstEdges) {
     FibonacciHeap heap = FibonacciHeap();
 
+    // Loop through every edge in the graph and add that edge to the priority queue (fibonacci heap)
     for(int nodeId = 0; nodeId < graph->numberOfNodes; nodeId++) {
 
         for (int j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
@@ -34,7 +35,7 @@ Edge* KruskalSolver::solve(Edge *mstEdges) {
         }
     }
 
-
+    // create a vector for each node containing that nodes id and store them in another vector
     std::vector< std::vector<int> > graphNodes;
     for(int i = 0; i < graph->numberOfNodes; i++) {
         std::vector<int> tree;
@@ -43,11 +44,21 @@ Edge* KruskalSolver::solve(Edge *mstEdges) {
     }
 
     int count = 0;
+
+    // while the MST isn't finished (MST is complete when the size of graphnodes reaches 1)
     while(graphNodes.size() > 1) {
+
+        // Every iteration select the next least weighted edge
         Node smallestEdge = *heap.extractMin();
         int position;
+
+        // Retrieve the vector denoting the tree containing one of the nodes in the current edge
         std::vector<int>* tree = getTreeContaining(smallestEdge.vertexA, &graphNodes, &position);
+
+        // check if the other node in the edge is already contained within the same tree
         if(!doesTreeContain(smallestEdge.vertexB, tree)) {
+
+            // If it's not join the tree of the second node ot the tree of the first and remove the second tree
             std::vector<int>* tree2 = getTreeContaining(smallestEdge.vertexB, &graphNodes, &position);
             tree->insert(tree->end(), tree2->begin(), tree2->end());
             graphNodes.erase(graphNodes.begin() + position);
@@ -55,7 +66,6 @@ Edge* KruskalSolver::solve(Edge *mstEdges) {
             count++;
         }
     }
-
 
     return mstEdges;
 }
