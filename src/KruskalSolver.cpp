@@ -27,7 +27,7 @@ Edge* KruskalSolver::solve(Edge *mstEdges) {
 
     for(int nodeId = 0; nodeId < graph->numberOfNodes; nodeId++) {
 
-        for (int j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
+        for (size_t j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
             if(nodeId < graph->edgeList[j]) {
                 heap.insert(new Node(nodeId, graph->weightsList[j], nodeId, graph->edgeList[j]));
             }
