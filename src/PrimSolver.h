@@ -4,13 +4,14 @@
 
 #include "DataStructures/CSRGraph.h"
 #include "DataStructures/Edge.h"
+#include "Solver.h"
 
 
-class PrimSolver {
+class PrimSolver : public Solver {
 public:
-    CSRGraph* graph;
+//    CSRGraph* graph;
     explicit PrimSolver(CSRGraph* graph);
-    Edge* solve(Edge* mstEdges);
+    Edge* solve(Edge* mstEdges) override;
 };
 
 

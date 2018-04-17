@@ -4,5 +4,5 @@ project(SolvingLibrary)
 set(CMAKE_CXX_STANDARD 11)
 
 
-set(SOURCE_FILES DataStructures/FibonacciHeap.cpp DataStructures/FibonacciHeap.h PrimSolver.cpp PrimSolver.h DataStructures/Node.cpp DataStructures/Node.h KruskalSolver.cpp KruskalSolver.h DataStructures/CSRGraph.h DataStructures/Edge.h)
+set(SOURCE_FILES DataStructures/FibonacciHeap.cpp DataStructures/FibonacciHeap.h PrimSolver.cpp PrimSolver.h DataStructures/Node.cpp DataStructures/Node.h KruskalSolver.cpp KruskalSolver.h DataStructures/CSRGraph.h DataStructures/Edge.h Solver.h util.h)
 add_library(SolvingLibrary STATIC ${SOURCE_FILES})

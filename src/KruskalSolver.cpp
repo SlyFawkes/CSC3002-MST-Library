@@ -3,13 +3,14 @@
 #include <cstdio>
 #include "KruskalSolver.h"
 #include "DataStructures/FibonacciHeap.h"
+#include "util.h"
 
 
 KruskalSolver::KruskalSolver(CSRGraph* graph) {
     this->graph = graph;
 }
 
-Edge *KruskalSolver::solve(Edge *mstEdges) {
+Edge* KruskalSolver::solve(Edge *mstEdges) {
     FibonacciHeap heap = FibonacciHeap();
 
     for(int nodeId = 0; nodeId < graph->numberOfNodes; nodeId++) {
@@ -47,25 +48,4 @@ Edge *KruskalSolver::solve(Edge *mstEdges) {
     return mstEdges;
 }
 
-std::vector<int>* KruskalSolver::getTreeContaining(int nodeId, std::vector< std::vector<int> >* graphNodes, int* position) {
-    std::vector<int>* graphNode;
-    for (int i = 0; i < graphNodes->size(); i++) {
-        graphNode = &graphNodes->at(i);
-        for (int j = 0; j < graphNode->size(); j++) {
-            if(graphNode->at(j) == nodeId) {
-                *position = i;
-                return &graphNodes->at(i);
-            }
-        }
-    }
-}
-
-bool KruskalSolver::doesTreeContain(int nodeId, std::vector<int>* tree) {
-    for(unsigned long i = 0; i < tree->size(); i++) {
-        if(tree->at(i) == nodeId) {
-            return true;
-        }
-    }
-    return false;
-}
 

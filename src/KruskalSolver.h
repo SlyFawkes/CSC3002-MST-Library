@@ -7,17 +7,13 @@
 #include "DataStructures/Node.h"
 #include "DataStructures/CSRGraph.h"
 #include "DataStructures/Edge.h"
+#include "Solver.h"
 
-class KruskalSolver {
+class KruskalSolver: public Solver {
 public:
-    CSRGraph* graph;
     explicit KruskalSolver(CSRGraph* graph);
-    Edge* solve(Edge* mstEdges);
-
-private:
-    std::vector<int>* getTreeContaining(int nodeId, std::vector< std::vector<int> >* graphNodes, int* position);
-    bool doesTreeContain(int nodeId, std::vector<int>* tree);
-    };
+    Edge* solve(Edge* mstEdges) override;
+};
 
 
 #endif //SOLVINGLIBRARY_KRUSKALSOLVER_H
