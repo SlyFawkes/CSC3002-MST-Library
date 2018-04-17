@@ -1,15 +1,28 @@
 
 #include "FibonacciHeap.h"
 
+/**
+ * Constructor, sets default values for publicly accessible values
+ */
 FibonacciHeap :: FibonacciHeap() {
     nodeAmount = 0;
     minimumNode = nullptr;
 }
 
+/**
+ * Retrieve the minimum node without removing it from the heap.
+ *
+ * @return Pointer to the minimum node in the heap
+ */
 Node* FibonacciHeap::getMin() {
     return minimumNode;
 }
 
+/**
+ * Insert the specified node into the heap.
+ *
+ * @param node A pointer to the node which is to be added to the heap.
+ */
 void FibonacciHeap::insert(Node* node) {
     node->degree = 0;
     node->parent = nullptr;
@@ -29,6 +42,11 @@ void FibonacciHeap::insert(Node* node) {
     this->nodeAmount++;
 }
 
+/**
+ * Joins a second heap into the current heap.
+ *
+ * @param heap The heap that is to be added to the current heap.
+ */
 void FibonacciHeap::fibHeapUnion(FibonacciHeap heap) {
     if (minimumNode == nullptr) {
         minimumNode = heap.minimumNode;
@@ -51,6 +69,11 @@ void FibonacciHeap::fibHeapUnion(FibonacciHeap heap) {
     nodeAmount = nodeAmount + heap.nodeAmount;
 }
 
+/**
+ * Remove the minimum node from the heap and return it to the caller.
+ *
+ * @return A pointer to the extracted node.
+ */
 Node* FibonacciHeap::extractMin() {
     Node* extractedNode = minimumNode;
 
@@ -86,6 +109,9 @@ Node* FibonacciHeap::extractMin() {
     return extractedNode;
 }
 
+/**
+ * Consolidates the root list, ensures every root has a unique degree value.
+ */
 void FibonacciHeap::consolidate() {
     int maxDegree = nodeAmount;
     Node* tempArray[maxDegree + 1] = {};
@@ -135,6 +161,14 @@ void FibonacciHeap::consolidate() {
     }
 }
 
+/**
+ *
+ * Removes rootNode from the root list and makes it a child of newParent.
+ * Increases degree of newParent and removes mark from rootNode.
+ *
+ * @param rootNode A pointer to the node being removed from the root list
+ * @param newParent A pointer to the node which will be the parent of rootNode
+ */
 void FibonacciHeap::link(Node* rootNode, Node* newParent) {
     rootNode->parent = newParent;
 
@@ -154,6 +188,12 @@ void FibonacciHeap::link(Node* rootNode, Node* newParent) {
     rootNode->marked = false;
 }
 
+/**
+ * Reduce the key of the referenced node to the new value if the new value is lesser than the nodes original key value.
+ *
+ * @param node A pointer to the node which is to have its key decreased
+ * @param key The new value for the nodes key
+ */
 void FibonacciHeap::decreaseKey(Node* node, int key) {
     if (key > node->key) {
         return;
@@ -171,6 +211,12 @@ void FibonacciHeap::decreaseKey(Node* node, int key) {
     }
 }
 
+/**
+ * Remove the node child from their parent and add them to the root list of nodes.
+ *
+ * @param child A pointer to the node to be removed from their parent node
+ * @param parent The parent of the node that is being added to the root list
+ */
 void FibonacciHeap::cut(Node* child, Node* parent) {
     if (child != child->right) {
         parent->child = child->right;
@@ -188,6 +234,11 @@ void FibonacciHeap::cut(Node* child, Node* parent) {
     minimumNode->right = child;
 }
 
+/**
+ * Calls the cut method until it finds an unmarked node or a node in the root list.
+ *
+ * @param node A pointer to the node which is being checked whether or not it should be cut
+ */
 void FibonacciHeap::cascadeCut(Node* node) {
     Node* parent = node->parent;
     if (parent != nullptr) {
