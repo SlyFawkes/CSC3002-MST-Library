@@ -25,7 +25,7 @@ KruskalSolver::KruskalSolver(CSRGraph* graph) {
 Edge* KruskalSolver::solve(Edge *mstEdges) {
     FibonacciHeap heap = FibonacciHeap();
 
-    for(int nodeId = 0; nodeId < graph->numberOfNodes; nodeId++) {
+    for(size_t nodeId = 0; nodeId < graph->numberOfNodes; nodeId++) {
 
         for (size_t j = graph->nodeList[nodeId]; j < graph->nodeList[nodeId + 1]; j++) {
             if(nodeId < graph->edgeList[j]) {

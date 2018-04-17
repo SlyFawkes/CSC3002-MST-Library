@@ -2,10 +2,11 @@
 #ifndef SOLVINGLIBRARY_NODE_H
 #define SOLVINGLIBRARY_NODE_H 1
 
+#include <stddef.h>
 
 class Node {
 public:
-    int id;
+    size_t id;
     int degree;
     Node* parent;
     Node* child;
@@ -14,11 +15,11 @@ public:
     bool marked;
     int key;
     bool inHeap;
-    int vertexA;
-    int vertexB;
+    size_t vertexA;
+    size_t vertexB;
 
-    explicit Node(int id, int key);
-    explicit Node(int id, int key, int vertexA, int vertexB);
+    explicit Node(size_t id, int key);
+    explicit Node(size_t id, int key, size_t vertexA, size_t vertexB);
 
 };
 

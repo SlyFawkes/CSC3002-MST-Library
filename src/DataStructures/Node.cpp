@@ -9,7 +9,7 @@
  * @param vertexA Optional id of a graph vertex
  * @param vertexB Optional id of a graph vertex
  */
-Node::Node(int id, int key, int vertexA, int vertexB) {
+Node::Node(size_t id, int key, size_t vertexA, size_t vertexB) {
     this->id = id;
     this->key = key;
     this->degree = 0;
@@ -29,7 +29,7 @@ Node::Node(int id, int key, int vertexA, int vertexB) {
  * @param id Unique id of the node
  * @param key Value to sort the nodes by
  */
-Node::Node(int id, int key) {
+Node::Node(size_t id, int key) {
     this->id = id;
     this->key = key;
     this->degree = 0;
@@ -39,6 +39,6 @@ Node::Node(int id, int key) {
     this->left = this;
     this->right = this;
     this->inHeap = true;
-    this->vertexA = -1;
-    this->vertexB = -1;
+    this->vertexA = {};
+    this->vertexB = {};
 }
