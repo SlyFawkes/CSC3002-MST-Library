@@ -1,7 +1,7 @@
 
 
 #ifndef SOLVINGLIBRARY_CSRGRAPH_H
-#define SOLVINGLIBRARY_CSRGRAPH_H
+#define SOLVINGLIBRARY_CSRGRAPH_H 1
 
 #include <cstddef>
 

@@ -1,9 +1,6 @@
-//
-// Created by dan on 17/04/18.
-//
 
 #ifndef SOLVINGLIBRARY_SOLVER_H
-#define SOLVINGLIBRARY_SOLVER_H
+#define SOLVINGLIBRARY_SOLVER_H 1
 
 
 #include "DataStructures/CSRGraph.h"

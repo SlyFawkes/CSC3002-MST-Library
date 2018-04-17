@@ -1,7 +1,7 @@
 
 
 #ifndef SOLVINGLIBRARY_EDGE_H
-#define SOLVINGLIBRARY_EDGE_H
+#define SOLVINGLIBRARY_EDGE_H 1
 
 struct Edge {
     int nodeA;

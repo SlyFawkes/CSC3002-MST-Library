@@ -1,7 +1,7 @@
 
 
 #ifndef SOLVINGLIBRARY_KRUSKALSOLVER_H
-#define SOLVINGLIBRARY_KRUSKALSOLVER_H
+#define SOLVINGLIBRARY_KRUSKALSOLVER_H 1
 
 #include <vector>
 #include "DataStructures/Node.h"

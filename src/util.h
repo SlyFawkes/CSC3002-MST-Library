@@ -1,7 +1,7 @@
 
 
 #ifndef SOLVINGLIBRARY_UTIL_H
-#define SOLVINGLIBRARY_UTIL_H
+#define SOLVINGLIBRARY_UTIL_H 1
 
 
 #include <vector>
