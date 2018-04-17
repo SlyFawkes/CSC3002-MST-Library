@@ -6,6 +6,14 @@
 
 #include <vector>
 
+/**
+ * Finds the tree containing the specified nodeId and sets the position in the vector it was found at.
+ *
+ * @param nodeId The id of the node to search for in the vectors
+ * @param graphNodes A vector of vectors that you wish to search through
+ * @param position A buffer which is set to contain the position the vector was found at
+ * @return The pointer to the vector containing the node id
+ */
 std::vector<int>* getTreeContaining(int nodeId, std::vector< std::vector<int> >* graphNodes, int* position) {
     std::vector<int>* graphNode;
     // For every vector in graphNodes select the one at position i
@@ -22,6 +30,13 @@ std::vector<int>* getTreeContaining(int nodeId, std::vector< std::vector<int> >*
     }
 }
 
+/**
+ * Determines whether or not a vector contains the specified id.
+ *
+ * @param nodeId The value you wish to search for
+ * @param tree The tree you wish to search to find the id
+ * @return A boolean value indicating whether or not the id was found in the vector supplied
+ */
 bool doesTreeContain(int nodeId, std::vector<int>* tree) {
     // Check each item in vector for nodeId
     for(unsigned long i = 0; i < tree->size(); i++) {
